@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "xr-demo-viewer": "../../../components/ui/xr-demo-viewer/index",
+    "xr-template-gltfUVSet": "../../../components/ar/material/xr-template-gltfUVSet/index"
+  },
+  "disableScroll": true, "renderer": "webview"
+}

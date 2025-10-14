@@ -1,0 +1,16 @@
+{
+  "pages": [
+    "pages/normal/lifetimecontent/index",
+    "pages/normal/lifetime/index",
+    "pages/normal/testmodel/index",
+    "pages/materials/gltfUVSet/index"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarBackgroundColor": "#ffffff"
+  },
+  "style": "v2",
+  "componentFramework": "glass-easel",
+  "lazyCodeLoading": "requiredComponents"
+}

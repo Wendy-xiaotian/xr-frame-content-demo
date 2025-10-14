@@ -1,0 +1,12 @@
+<xr-demo-viewer
+  title="glTF 动态修改模型贴图使用UV"
+  intro="加载 glTF 模型，通过UV给多模型共用贴图模型更改显示贴图"
+>
+  <xr-lifetime
+    disable-scroll
+    id="main-frame"
+    width="{{renderWidth}}"
+    height="{{renderHeight}}"
+    style="width:{{width}}px;height:{{height}}px;top:{{top}}px;left:{{left}}px;display:block;"
+  />
+</xr-demo-viewer>

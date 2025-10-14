@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "xr-demo-viewer": "../../../components/ui/xr-demo-viewer/index",
+    "xr-lifetime-content": "../../../components/ar/normal/xr-lifetime-content/index"
+  },
+  "disableScroll": true, "renderer": "webview"
+}

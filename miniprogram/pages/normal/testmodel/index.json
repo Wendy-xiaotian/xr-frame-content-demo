@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "xr-demo-viewer": "../../../components/ui/xr-demo-viewer/index",
+    "xr-test-model": "../../../components/ar/normal/xr-test-model/index"
+  },
+  "disableScroll": true, "renderer": "webview"
+}
