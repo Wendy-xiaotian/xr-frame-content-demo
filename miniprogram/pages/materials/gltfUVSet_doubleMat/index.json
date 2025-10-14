@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "xr-demo-viewer": "../../../components/ui/xr-demo-viewer/index",
+    "xr-template-gltfUVSet-doubleMat": "../../../components/ar/material/xr-template-gltfUVSet-doubleMat/index"
+  },
+  "disableScroll": true, "renderer": "webview"
+}

@@ -1,0 +1,22 @@
+<xr-scene id="xr-scene" bind:ready="handleReady">
+  <xr-assets bind:progress="handleAssetsProgress" bind:loaded="handleAssetsLoaded">
+    <xr-asset-load type="gltf" asset-id="gltf-twa" src="https://changguan-1357310316.cos.ap-shanghai.myqcloud.com/phase_one/prayAR/Model/sign.glb" /> 
+    <!-- <xr-asset-load type="gltf" asset-id="gltf-sui" src="https://changguan-1357310316.cos.ap-shanghai.myqcloud.com/phase_one/prayAR/Model/2.glb" />  -->
+  </xr-assets>
+  <xr-env env-data="xr-frame-team-workspace-day2" />
+  <xr-node>
+    <xr-node node-id="camera-target" position="0.75 6.5 0"></xr-node>
+
+    <xr-gltf id="twa" node-id="renderItem" position="0 0 0" rotation="0 0 0" scale="1 1 1" model="gltf-twa" anim-autoplay></xr-gltf>
+    <!-- <xr-gltf id="sui" node-id="sui" position="0 0 0" rotation="0 0 0" scale="1 1 1" model="gltf-sui"></xr-gltf> -->
+    <xr-camera
+      id="camera" node-id="camera" position="10 5 0" clear-color="0.925 0.925 0.925 1"
+      target="camera-target" background="skybox"
+      camera-orbit-control=""
+    ></xr-camera>
+  </xr-node>
+  <xr-node node-id="lights">
+    <xr-light type="ambient" color="1 1 1" intensity="0.6" />
+    <xr-light type="directional" rotation="20 120 0" color="1 1 1" intensity="2"/>
+  </xr-node>
+</xr-scene>

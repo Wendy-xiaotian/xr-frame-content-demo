@@ -1,9 +1,11 @@
 {
   "pages": [
+    "pages/materials/gltfUVSet_doubleMat/index",
+    "pages/materials/gltfUVSet/index",
     "pages/normal/lifetimecontent/index",
     "pages/normal/lifetime/index",
-    "pages/normal/testmodel/index",
-    "pages/materials/gltfUVSet/index"
+    "pages/normal/testmodel/index"
+    
   ],
   "window": {
     "navigationBarTextStyle": "black",
