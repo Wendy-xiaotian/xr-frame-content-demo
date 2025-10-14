@@ -70,8 +70,7 @@ Component({
       console.log('signList', one.position.x, one.position.y, one.position.z)
       for(let i=0;i<signList.length;i++){
         const signMeshNode = signList[i].getChildAtIndex(0).getChildAtIndex(1);
-        i == 1 ? c = [0, 0, 70] : c = [0, 0, 70]
-        signMeshNode.addComponent(xr.CubeShape, {center: c, size: [50, 6, 150]});
+        signMeshNode.addComponent(xr.CubeShape, {center: [0, 0, 70], size: [50, 6, 150]});
         signMeshNode.addComponent(xr.ShapeGizmos);
         signMeshNode.event.add("untouch-shape", (e) => {
           e.target.parent.index = i; // 取值0-19
