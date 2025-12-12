@@ -1,22 +1,49 @@
 <xr-scene id="xr-scene" bind:ready="handleReady">
   <xr-assets bind:progress="handleAssetsProgress" bind:loaded="handleAssetsLoaded">
-    <xr-asset-load type="gltf" asset-id="gltf-twa" src="https://changguan-1357310316.cos.ap-shanghai.myqcloud.com/phase_one/prayAR/Model/1.glb" /> 
+    <!-- <xr-asset-load type="gltf" asset-id="gltf-twa" src="https://changguan-1357310316.cos.ap-shanghai.myqcloud.com/phase_two/01_memorial_gate/Model/reddog.glb" />  -->
+    <xr-asset-load type="gltf" asset-id="gltf-twa" src="https://changguan-1357310316.cos.ap-shanghai.myqcloud.com/phase_two/04_tree/Model/pray_tree_cloud_red.glb" /> 
+    <!-- <xr-asset-load type="gltf" asset-id="gltf-twa" src="https://changguan-1357310316.cos.ap-shanghai.myqcloud.com/phase_one/prayAR/Model/new_tree/pray_tree_cloud_purple.glb" />  -->
+    <!-- <xr-asset-load type="gltf" asset-id="gltf-twa" src="https://changguan-1357310316.cos.ap-shanghai.myqcloud.com/phase_one/prayAR/Model/new_tree/pray_tree_cloud_purple_02.glb" />  -->
+    <!-- <xr-asset-load type="gltf" asset-id="gltf-twa" src="https://changguan-1357310316.cos.ap-shanghai.myqcloud.com/phase_one/prayAR/Model/new_tree/tree_old.glb" />  -->
+    <!-- <xr-asset-load type="gltf" asset-id="gltf-twa" src="https://changguan-1357310316.cos.ap-shanghai.myqcloud.com/phase_one/mileAR/Model/indoor_mile.glb" />  -->
     <xr-asset-load type="gltf" asset-id="gltf-sui" src="https://changguan-1357310316.cos.ap-shanghai.myqcloud.com/phase_one/prayAR/Model/2.glb" /> 
+    <xr-asset-load type="texture" asset-id="tex-smoke"
+      src="https://twt-1357310316.cos.ap-shanghai.myqcloud.com/Ink002M.png" />
+      <xr-asset-load type="texture" asset-id="tex-leaf01"
+      src="https://changguan-1357310316.cos.ap-shanghai.myqcloud.com/phase_two/01_memorial_gate/leaf01.png" />
+      <xr-asset-load type="texture" asset-id="tex-leaf02"
+      src="https://changguan-1357310316.cos.ap-shanghai.myqcloud.com/phase_two/01_memorial_gate/leaf02.png" />
+      <xr-asset-load type="texture" asset-id="tex-leaf03"
+      src="https://changguan-1357310316.cos.ap-shanghai.myqcloud.com/phase_two/01_memorial_gate/leaf03.png" />
   </xr-assets>
   <xr-env env-data="xr-frame-team-workspace-day2" />
   <xr-node>
-    <xr-node node-id="camera-target" position="2.1 5 -0.6"></xr-node>
+    <xr-node node-id="camera-target" position="5 0 0"></xr-node>
 
     <xr-gltf id="twa" node-id="renderItem" position="0 0 0" rotation="0 0 0" scale="1 1 1" model="gltf-twa"></xr-gltf>
     <xr-gltf id="sui" node-id="sui" position="0 0 0" rotation="0 0 0" scale="1 1 1" model="gltf-sui"></xr-gltf>
+    <!-- <xr-particle id="ps-smoke" position="-6.26 -0.3 -6.24" capacity="170" emit-rate="0" burst-count="170" burst-cycle="10"
+        burst-time="0" life-time="600" speed="0" emitter-type="BoxShape"
+        emitter-props="minEmitBox:-1.5 0 -1.9, maxEmitBox:1.5 0 1.9" angle="0 360" angular-speed="-12 12" size="0.6"
+        texture="tex-smoke" start-color="1.01 1.01 1.01 0.7" never-cull /> -->
+    <!-- <xr-particle id="ps-leaf" position="-5.2 -0.5 -1" capacity="200" emit-rate="15" speed="0.3 0.7" life-time="6 7" emitter-type="BoxShape" emitter-props="minEmitBox:-1.5 2 -1.5, maxEmitBox:1.5 2.2 1.5" angle="0 360" angular-speed="-180 180" size="1" texture="tex-leaf01" /> -->
+    <!-- <xr-particle id="ps-rain" delay="3000" position="0 0 0" capacity="1000" emit-rate="50" speed="1 5" life-time="0.6 1" emitter-type="BoxShape" emitter-props="minEmitBox:-4 2.5 -4, maxEmitBox:4 3 4, direction:0 -1 0, direction2:0 -1 0" angle="180" size="0.1 1" render-mode="y" texture="tex-leaf01" startColor="0.65 0.7 0.8 0.3" /> -->
+
+    <xr-particle id="ps-halo" position="0 0 0" capacity="300" emit-rate="10" speed="0.15 1" life-time="17 20" emitter-type="BoxShape" emitter-props="minEmitBox:-6 -1 -6, maxEmitBox:6 -0.5 6, direction:0 -1 0, direction2:0 -1 0" angle="0 360" angular-speed="-60 60" texture="tex-leaf01" start-color="1.5 0.8 0.4 1" start-color2="0.7 1.5 0.5 1" />
+    <xr-particle id="ps-halo" position="0 0 0" capacity="300" emit-rate="10" speed="0.15 1" life-time="17 20" emitter-type="BoxShape" emitter-props="minEmitBox:-6 -1 -6, maxEmitBox:6 -0.5 6, direction:0 -1 0, direction2:0 -1 0" angle="0 360" angular-speed="-60 60" texture="tex-leaf02" start-color="1.5 0.8 0.4 1" start-color2="0.7 1.5 0.5 1" />
+    <xr-particle id="ps-halo" position="0 0 0" capacity="300" emit-rate="10" speed="0.15 1" life-time="17 20" emitter-type="BoxShape" emitter-props="minEmitBox:-6 -1 -6, maxEmitBox:6 -0.5 6, direction:0 -1 0, direction2:0 -1 0" angle="0 360" angular-speed="-60 60" texture="tex-leaf03" start-color="1.5 0.8 0.4 1" start-color2="0.7 1.5 0.5 1" />
+
+    <xr-mesh node-id="cube" geometry="cube" />
+    <xr-mesh geometry="plane" position="0 -5 0" scale="20 0 20" receive-shadow uniforms="u_baseColorFactor:0.4 0.6 0.8 1"></xr-mesh>
     <xr-camera
       id="camera" node-id="camera" position="17 5 0" clear-color="0.925 0.925 0.925 1"
       target="camera-target" background="skybox"
+      far="3000"
       camera-orbit-control=""
     ></xr-camera>
   </xr-node>
   <xr-node node-id="lights">
     <xr-light type="ambient" color="1 1 1" intensity="0.6" />
-    <xr-light type="directional" rotation="20 120 0" color="1 1 1" intensity="2"/>
+    <xr-light type="directional" rotation="40 70 0" color="1 1 1" intensity="2" cast-shadow/>
   </xr-node>
 </xr-scene>

@@ -54,9 +54,36 @@ Component({
         // 进行内容初始化
         
         this.scene.event.addOnce('touchstart', this.placeNode.bind(this));
+        this.setUV();
       },200);
     },
+    async setUV() {
+      const scene = this.scene;
 
+      // 获取元素
+      const twaElm = this.scene.getElementById('sui');
+      
+      const signList = this.signList = twaElm.getChildAtIndex(0)._children;
+      // this.updateViewSign(0, 1)
+      console.log('孩子', signList, twaElm._children)
+      let one = signList[0].getComponent(xr.Transform)
+      console.log('signList', one.position.x, one.position.y, one.position.z)
+      for(let i=0;i<signList.length;i++){
+        const signMeshNode = signList[i].getChildAtIndex(0).getChildAtIndex(0);
+        signMeshNode.addComponent(xr.CubeShape, {center: [0, 0, 1], size: [3, 0.5, 1]});
+        // signMeshNode.addComponent(xr.ShapeGizmos);
+        signMeshNode.event.add("untouch-shape", (e) => {
+          e.target.parent.index = i; // 取值0-19
+          console.log('untouch', e.target.parent.index)
+          // this.triggerEvent('handleViewSign', e.target.parent.index);
+        })
+        // console.log('', i)
+      }
+
+      for(let i=0;i<signList.length;i++) {
+        this.updateViewSign(i, Math.floor(Math.random() * 6));
+      }
+    },
     placeNode(event) {
       const {clientX, clientY} = event.touches[0];
       const {frameWidth: width, frameHeight: height} = this.scene;
@@ -70,5 +97,42 @@ Component({
 
       this.scene.event.addOnce('touchstart', this.placeNode.bind(this));
     },
+    updateViewSign(index, card_type) {
+      const signMeshNode = this.signList[index].getChildAtIndex(0).getChildAtIndex(0);
+      const signMeshCom = signMeshNode.getComponent(xr.Mesh)
+      const changeMaterial = signMeshCom.material;
+      // const changeMaterial = signMeshCom.material.clone();
+      const y = card_type > 2 ? 0.5 : 0;
+      const x = card_type > 2 ? card_type - 3 : card_type;
+      const uvMatrix = xr.Matrix4.createFromArray(this.getUvTransform(x/3, y, 1, 1, 0))
+      // 设置uv矩阵
+      changeMaterial.setMatrix('u_uvTransform', uvMatrix);
+      // 开启使用uv矩阵的宏
+      changeMaterial.setMacro('WX_USE_UVTRANSFORM', true );
+      changeMaterial.setMacro('WX_USE_UVTRANSFORM_BASECOLOR', true );
+      changeMaterial.setMacro('WX_USE_UVTRANSFORM_EMISSIVE', true );
+      // signMeshCom.material = changeMaterial;
+    },
+     /**
+     * 获取UV变化矩阵，列主序
+     * 
+     * @param {number} tx x轴偏移
+     * @param {number} ty y轴偏移
+     * @param {number} sx x轴缩放
+     * @param {number} sy y轴缩放
+     * @param {number} rotation 旋转
+     * @return {Array} uvMatrixArray
+     */
+    getUvTransform(tx, ty, sx, sy, rotation) {
+      const c = Math.cos( rotation );
+      const s = Math.sin( rotation );
+
+      return [
+        sx * c, -sx * s, 0, 0,
+        sy * s, sy * c, 0, 0,
+        0, 0, 1, 0,
+        tx, ty, 0, 1,
+      ];
+    }
   } 
 })
