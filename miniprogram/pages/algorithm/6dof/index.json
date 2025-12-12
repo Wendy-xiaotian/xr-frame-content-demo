@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "xr-demo-viewer": "../../../components/ui/xr-demo-viewer/index",
+    "xr-6dof": "../../../components/ar/algorithm/xr-6dof/index"
+  },
+  "disableScroll": true, "renderer": "webview"
+}

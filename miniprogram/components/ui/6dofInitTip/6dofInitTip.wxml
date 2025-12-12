@@ -1,0 +1,12 @@
+<view class="init-tips">
+	<view class="init-tips-box">
+    <view class="init-img-box">
+      <image class="init-arrow-left" src="https://ar-scene-source.nosdn.127.net/089aa5cc995deb0847be7cb038d0c23c.png" />
+      <image class="init-tips-photo" src="https://ar-scene-source.nosdn.127.net/63a6e8c5175b5b70b98b8c91978f7f6f.png" />
+      <image class="init-arrow-right" src="https://ar-scene-source.nosdn.127.net/bb15b54086df425da1548013e568cfe0.png" />
+    </view>
+		<view class="init-tips-name">AR 初始化中...</view>
+		<view class="init-tips-desc">请缓慢移动设备，左右平移扫描平面</view>
+		<view class="init-tips-desc">进行初始化</view>
+	</view>
+</view>

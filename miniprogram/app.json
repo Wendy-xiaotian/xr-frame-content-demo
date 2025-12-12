@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/algorithm/6dof/index",
     "pages/materials/gltfUVSet_doubleMat/index",
     "pages/materials/gltfUVSet/index",
     "pages/normal/lifetimecontent/index",

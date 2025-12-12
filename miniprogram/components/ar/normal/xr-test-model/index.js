@@ -1,4 +1,6 @@
 // components/xr-templte-gltfUVSet/index.ts
+const xr = wx.getXrFrameSystem();
+
 Component({
 
   /**
@@ -12,28 +14,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    newSignList: [
-      { id: 0, user_id: 8, user_nickname: "天生景",  card_type: 0, content: '天恩祈福', date: '2025年12月26日', likes_count: 999, has_liked: false },
-      { id: 1, user_id: 8, user_nickname: "天生景", card_type: 1, content: '地恩祈福', date: '2025年12月26日', likes_count: 999, has_liked: false },
-      { id: 2, user_id: 8, user_nickname: "天生景",  card_type: 2, content: '师恩祈福', date: '2025年12月26日', likes_count: 999, has_liked: false },
-      { id: 3, user_id: 8, user_nickname: "天生景",  card_type: 3, content: '家恩祈福', date: '2025年12月26日', likes_count: 999, has_liked: false },
-      { id: 4, user_id: 8, user_nickname: "天生景",  card_type: 4, content: '知恩祈福', date: '2025年12月26日', likes_count: 999, has_liked: false },
-      { id: 5, user_id: 8, user_nickname: "天生景",  card_type: 4, content: '知恩祈福', date: '2025年12月26日', likes_count: 999, has_liked: false },
-      { id: 6, user_id: 8, user_nickname: "天生景",  card_type: 4, content: '知恩祈福', date: '2025年12月26日', likes_count: 999, has_liked: false },
-      { id: 7, user_id: 8, user_nickname: "天生景",  card_type: 4, content: '知恩祈福', date: '2025年12月26日', likes_count: 999, has_liked: false },
-      { id: 8, user_id: 8, user_nickname: "天生景",  card_type: 4, content: '知恩祈福', date: '2025年12月26日', likes_count: 999, has_liked: false },
-      { id: 9, user_id: 8, user_nickname: "天生景",  card_type: 4, content: '知恩祈福', date: '2025年12月26日', likes_count: 999, has_liked: false },
-      { id: 10, user_id: 8, user_nickname: "天生景",  card_type: 4, content: '知恩祈福', date: '2025年12月26日', likes_count: 999, has_liked: false },
-      { id: 11, user_id: 8, user_nickname: "天生景",  card_type: 4, content: '知恩祈福', date: '2025年12月26日', likes_count: 999, has_liked: false },
-      { id: 12, user_id: 8, user_nickname: "天生景",  card_type: 4, content: '知恩祈福', date: '2025年12月26日', likes_count: 999, has_liked: false },
-      { id: 13, user_id: 611, user_nickname: "天生景",  card_type: 4, content: '知恩祈福', date: '2025年12月26日', likes_count: 999, has_liked: false },
-      { id: 14, user_id: 611, user_nickname: "天生景",  card_type: 4, content: '知恩祈福', date: '2025年12月26日', likes_count: 999, has_liked: false },
-      { id: 15, user_id: 611, user_nickname: "天生景",  card_type: 4, content: '知恩祈福', date: '2025年12月26日', likes_count: 999, has_liked: false },
-      { id: 16, user_id: 611, user_nickname: "天生景",  card_type: 4, content: '知恩祈福', date: '2025年12月26日', likes_count: 999, has_liked: false },
-      { id: 17, user_id: 611, user_nickname: "天生景",  card_type: 4, content: '知恩祈福', date: '2025年12月26日', likes_count: 999, has_liked: false },
-      { id: 18, user_id: 611, user_nickname: "天生景",  card_type: 4, content: '知恩祈福', date: '2025年12月26日', likes_count: 999, has_liked: false },
-      { id: 19, user_id: 611, user_nickname: "天生景",  card_type: 4, content: '知恩祈福', date: '2025年12月26日', likes_count: 999, has_liked: false },
-    ],
+   
   },
 
   /**
@@ -57,7 +38,6 @@ Component({
     },
     async setUV() {
       const scene = this.scene;
-      const xrSystem = wx.getXrFrameSystem();
 
       // 获取元素
       const twaElm = this.scene.getElementById('twa');
@@ -65,12 +45,12 @@ Component({
       const signList = this.signList = twaElm._children;
       // this.updateViewSign(0, 1)
       console.log('孩子', twaElm._children)
-      let one = signList[0].getComponent(xrSystem.Transform)
+      let one = signList[0].getComponent(xr.Transform)
       console.log('signList', one.position.x, one.position.y, one.position.z)
       for(let i=0;i<signList.length;i++){
         const signMeshNode = signList[i].getChildAtIndex(0);
-        signMeshNode.addComponent(xrSystem.CubeShape, {center: [0, 0, 5], size: [6, 40, 100]});
-        signMeshNode.addComponent(xrSystem.ShapeGizmos);
+        signMeshNode.addComponent(xr.CubeShape, {center: [0, 0, 5], size: [6, 40, 100]});
+        signMeshNode.addComponent(xr.ShapeGizmos);
         signMeshNode.event.add("untouch-shape", (e) => {
           e.target.parent.index = i; // 取值0-19
           console.log('untouch', e.target.parent.index)
@@ -85,12 +65,12 @@ Component({
 
       // // console.log(signList);
       // for(let i=0;i<signList.length;i++) {
-      //   signList[i].getComponent(xrSystem.Transform).visible = false;
+      //   signList[i].getComponent(xr.Transform).visible = false;
       // }
-      // signList[0].getComponent(xrSystem.Transform).visible = true;
-      // console.log('', signList[0].getComponent(xrSystem.Transform).position.x, signList[0].getComponent(xrSystem.Transform).position.z)
+      // signList[0].getComponent(xr.Transform).visible = true;
+      // console.log('', signList[0].getComponent(xr.Transform).position.x, signList[0].getComponent(xr.Transform).position.z)
       // const signMeshNode = signList[0].getChildAtIndex(0);
-      // const signMeshCom = signMeshNode.getComponent(xrSystem.Mesh)
+      // const signMeshCom = signMeshNode.getComponent(xr.Mesh)
       // const changeMaterial = signMeshCom.material;
 
       // let offsetX = 0; // 五种样式签T_AR_Prop_Pendant01，0，0.2，0.4，0.6，0.8
@@ -99,7 +79,7 @@ Component({
       // let scaleY = 1;
       // let rotation = 0;
 
-      // const uvMatrix = xrSystem.Matrix4.createFromArray(this.getUvTransform(offsetX, offsetY, scaleX, scaleY, rotation))
+      // const uvMatrix = xr.Matrix4.createFromArray(this.getUvTransform(offsetX, offsetY, scaleX, scaleY, rotation))
       // // 设置uv矩阵
       // changeMaterial.setMatrix('u_uvTransform', uvMatrix);
       // // 开启使用uv矩阵的宏
@@ -107,13 +87,13 @@ Component({
       // changeMaterial.setMacro('WX_USE_UVTRANSFORM_BASECOLOR', true );
     },
     updateViewSign(index, card_type) {
-      const xrSystem = wx.getXrFrameSystem();
+      const xr = wx.getXrFrameSystem();
 
       const signMeshNode = this.signList[index].getChildAtIndex(0);
-      const signMeshCom = signMeshNode.getComponent(xrSystem.Mesh)
+      const signMeshCom = signMeshNode.getComponent(xr.Mesh)
       const changeMaterial = signMeshCom.material;
       // const changeMaterial = signMeshCom.material.clone();
-      const uvMatrix = xrSystem.Matrix4.createFromArray(this.getUvTransform(card_type/5, 0, 1, 1, 0))
+      const uvMatrix = xr.Matrix4.createFromArray(this.getUvTransform(card_type/5, 0, 1, 1, 0))
       // 设置uv矩阵
       changeMaterial.setMatrix('u_uvTransform', uvMatrix);
       // 开启使用uv矩阵的宏

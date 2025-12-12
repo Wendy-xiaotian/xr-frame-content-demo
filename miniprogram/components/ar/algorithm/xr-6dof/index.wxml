@@ -1,0 +1,25 @@
+<xr-scene id="xr-scene" ar-system="modes:Plane" bind:ready="handleReady" bind:ar-ready="handleARReady">
+  <xr-assets bind:progress="handleAssetsProgress" bind:loaded="handleAssetsLoaded" wx:if="{{startAssetsLoad}}">
+    <xr-asset-load type="gltf" asset-id="gltf-sui" src="https://changguan-1357310316.cos.ap-shanghai.myqcloud.com/phase_one/prayAR/Model/test/SM_AR_Tree01.glb" /> 
+    <xr-asset-load type="gltf" asset-id="anchor" src="https://mmbizwxaminiprogram-1258344707.cos.ap-guangzhou.myqcloud.com/xr-frame/demo/ar-plane-marker.glb" />
+  </xr-assets>
+  <xr-env env-data="xr-frame-team-workspace-day2" diffuse-exp="2" specular-exp="3"/>
+  <xr-node>
+    <xr-ar-tracker mode="Plane">
+      <xr-gltf model="anchor" wx:if="{{startAssetsLoad}}"></xr-gltf>
+    </xr-ar-tracker>
+
+    <xr-node wx:if="{{startAssetsLoad}}" node-id="setitem" visible="false">
+      <xr-gltf id="sui" node-id="sui" position="0 0 0" rotation="0 0 0" scale="1 1 1" model="gltf-sui" anim-autoplay></xr-gltf>
+    </xr-node>
+
+    <xr-camera
+      id="camera" node-id="camera" clear-color="0.925 0.925 0.925 1"
+      background="ar" is-ar-camera
+    ></xr-camera>
+  </xr-node>
+  <xr-node node-id="lights">
+    <xr-light type="ambient" color="1 1 1" intensity="0.6" />
+    <xr-light type="directional" rotation="20 120 0" color="1 1 1" intensity="2"/>
+  </xr-node>
+</xr-scene>

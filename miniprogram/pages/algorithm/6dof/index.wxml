@@ -1,0 +1,12 @@
+<xr-demo-viewer
+  title="xr-6dof 平面放置示例"
+  intro="6dof算法 识别平面并在平面放置模型"
+>
+  <xr-6dof
+    disable-scroll
+    id="main-frame"
+    width="{{renderWidth}}"
+    height="{{renderHeight}}"
+    style="width:{{width}}px;height:{{height}}px;top:{{top}}px;left:{{left}}px;display:block;"
+  />
+</xr-demo-viewer>
