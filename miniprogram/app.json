@@ -5,7 +5,8 @@
     "pages/materials/gltfUVSet/index",
     "pages/normal/lifetimecontent/index",
     "pages/normal/lifetime/index",
-    "pages/normal/testmodel/index"
+    "pages/normal/testmodel/index",
+    "pages/normal/testmodelAudio/index"
     
   ],
   "window": {

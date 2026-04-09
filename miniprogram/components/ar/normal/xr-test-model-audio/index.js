@@ -1,4 +1,8 @@
 // components/xr-templte-gltfUVSet/index.ts
+
+import {
+  GlobalAudio
+} from '../../../../utils/GlobalAudio';
 const xr = wx.getXrFrameSystem();
 
 Component({
@@ -14,7 +18,8 @@ Component({
    * 组件的初始数据
    */
   data: {
-   
+    isPlayingAudio: false, // 音频是否触发开始播放，用于定位成功或者内容显示后开始播放背景音频时触发
+    horseMusic: 'https://changguan-1357310316.cos.ap-shanghai.myqcloud.com/phase_two/03_dragon/Audios/Horse_Audio.MP3',
   },
 
   /**
@@ -33,8 +38,49 @@ Component({
       this.setData({loaded: true});
       // 做个简单的延时，保证glTF构建完成
       setTimeout(()=>{
-        this.setUV();
+        this.modelEvent();
       },200);
+    },
+    async modelEvent() {
+      this._horseAudio = new GlobalAudio();
+      let audio_path = await this._horseAudio.downloadAndPlayAudio(this.data.horseMusic);
+      this.setData({
+        horseMusic: audio_path
+      })
+      const scene = this.scene;
+      const horse = this.scene.getElementById('horse');
+      // this.setPos(horse, 0, 0, 0);
+      console.log('horse', horse)
+      const horseGLTF = horse.getComponent(xr.GLTF);
+      // const horseBodyMat = horse.getChildAtIndex(0).getChildAtIndex(0).getChildAtIndex(0).getChildAtIndex(0).getComponent(xr.Mesh).material;
+      const horseBodyMat = horseGLTF.getPrimitivesByNodeName('Horse_C_Body')[0].material;
+      const horseEyeMat = horseGLTF.getPrimitivesByNodeName('Horse_C_Eye')[0].material;
+      const horseHairMat = horseGLTF.getPrimitivesByNodeName('Horse_C_Hair')[0].material;
+      console.log('horse', horseBodyMat) 
+      // horseBodyMat.setVector('u_metallicRoughnessValues', xr.Vector2.createFromNumber(0, 1));
+      horseBodyMat.setVector('u_specularFactor', xr.Vector3.createFromNumber(0, 0, 0));
+      horseBodyMat.setFloat('u_glossinessFactor', [0]);
+      // horseBodyMat.setFloat('u_metallicRoughnessValues', [0, 1]);
+      // horseBodyMat.setMacro('WX_USE_NORMAL', false );
+      // horseBodyMat.setMacro('WX_USE_NORMALMAP', false );
+      // horseBodyMat.setMacro('"WX_USE_ROUGHNESSMAP"', true );
+      this.horseAni = horse.getComponent('animator');
+      
+      const horseClips = this.horseAni._clips;
+      this.horseClipName = []
+    
+      horseClips.forEach((v, key) => {
+        if (key.indexOf('pose') == -1) {
+          this.horseClipName.push(key)
+        }
+      })
+
+      this.horseAni.play(this.horseClipName[0], {
+        loop: 50,
+      });
+      console.log('马音频', this.data.horseMusic)
+      this._horseAudio.seek(0);
+      this._horseAudio.play(this.data.horseMusic, 1);
     },
     async setUV() {
       const scene = this.scene;
